@@ -43,6 +43,8 @@ module.exports = {
         new ESLintPlugin({
             extensions: ['ts', 'js', 'scss'],
             failOnError: false,
+            overrideConfigFile: path.resolve(__dirname, "eslint.config.mjs"),
+            configType: "flat",
         }),
     ],
 };
