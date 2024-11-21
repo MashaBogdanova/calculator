@@ -1,0 +1,16 @@
+@use '../abstract/list' as styles;
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: linear-gradient(
+    to bottom,
+    styles.$color-primary-xs 0%,
+    styles.$color-primary-s 100%
+  );
+}
