@@ -1,6 +1,6 @@
 interface NewElemParam {
   tag: string;
-  styles: Array<string>;
+  styles: string[];
   parent: string | HTMLElement;
   innerText?: string;
 }

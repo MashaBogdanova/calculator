@@ -26,13 +26,25 @@ export class Calculator {
     });
 
     // Output
-    new Output('0', calculator);
+    const outputWrapper = createElement({
+      tag: 'div',
+      styles: ['output__wrapper'],
+      parent: calculator,
+    });
+    const output = new Output(outputWrapper);
 
     // Buttons
     const buttonsWrapper = createElement({
       tag: 'div',
       styles: ['buttons'],
       parent: calculator,
+    });
+
+    buttonsWrapper.addEventListener('click', (e) => {
+      const clickedButton = e.target as HTMLButtonElement;
+      if (!isNaN(Number(clickedButton.innerText))) {
+        output.update(clickedButton.innerText);
+      }
     });
 
     BUTTON_SIGNS.map((sign) => {
