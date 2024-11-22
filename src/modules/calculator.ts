@@ -42,12 +42,19 @@ export class Calculator {
 
     buttonsWrapper.addEventListener('click', (e) => {
       const clickedButton = e.target as HTMLButtonElement;
+      const clickedSymbol = clickedButton.innerText;
+
       if (
-        !isNaN(Number(clickedButton.innerText)) ||
-        clickedButton.innerText === '.'
+        !isNaN(Number(clickedSymbol)) ||
+        clickedSymbol === '.' ||
+        clickedSymbol === '+/-'
       ) {
-        output.update(clickedButton.innerText);
-      } else if (clickedButton.innerText === 'AC') {
+        // Update value if user click digit or . or +/-
+        output.updateValue(clickedSymbol);
+      }
+
+      if (clickedSymbol === 'AC') {
+        // Clear if user click AC
         output.clear();
       }
     });
