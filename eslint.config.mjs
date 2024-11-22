@@ -43,8 +43,8 @@ export default [...compat.extends(
         "simple-import-sort/imports": "error",
         "simple-import-sort/exports": "error",
         "@typescript-eslint/no-unused-vars": ["error"],
-        "no-console": "error",
-        "no-debugger": "error",
+        "no-console": "warn",
+        "no-debugger": "warn",
         "object-curly-spacing": ["error", "always"],
     },
 }];

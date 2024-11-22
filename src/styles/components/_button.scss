@@ -1,0 +1,32 @@
+@use '../abstract/list' as styles;
+
+.button {
+  width: 4.2rem;
+  height: 4.2rem;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: styles.$color-light-s;
+
+  background-color: styles.$color-light-transparent;
+  border-radius: 50%;
+  border: 0.5px solid styles.$color-light-transparent;
+  box-shadow: 0 4px 4px styles.$color-dark-transparent;
+
+  transition: transform 150ms ease-out;
+
+  &_long {
+    width: unset;
+    flex-grow: 1;
+    border-radius: 50px;
+  }
+
+  &_accent {
+    background-color: styles.$color-primary;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
