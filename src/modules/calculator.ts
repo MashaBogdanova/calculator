@@ -42,7 +42,10 @@ export class Calculator {
 
     buttonsWrapper.addEventListener('click', (e) => {
       const clickedButton = e.target as HTMLButtonElement;
-      if (!isNaN(Number(clickedButton.innerText))) {
+      if (
+        !isNaN(Number(clickedButton.innerText)) ||
+        clickedButton.innerText === '.'
+      ) {
         output.update(clickedButton.innerText);
       } else if (clickedButton.innerText === 'AC') {
         output.clear();

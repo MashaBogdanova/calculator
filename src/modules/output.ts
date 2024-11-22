@@ -21,7 +21,12 @@ export class Output {
   }
 
   update(usersInput: string) {
-    if (this.term === '0') {
+    // Allow adding only one . in a number
+    if (usersInput === '.' && this.term.includes('.')) {
+      return;
+    }
+
+    if (this.term === '0' && usersInput !== '.') {
       this.term = usersInput;
     } else {
       this.term = this.term + usersInput;
