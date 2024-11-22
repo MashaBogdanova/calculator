@@ -1,6 +1,8 @@
 @use '../abstract/list' as styles;
 
 .calculator {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,6 +13,21 @@
 
   background-color: styles.$color-light-transparent;
   border-radius: 3.9rem;
+  &:before {
+    content: '';
+
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    z-index: -1;
+
+    width: 250px;
+    height: 450px;
+    background-color: rgba(84, 0, 0, 0.29);
+    border-radius: 70px;
+    filter: blur(20px);
+    box-shadow: 20px 40px 100px rgba(84, 0, 0, 0.29);
+  }
 }
 
 .buttons {
