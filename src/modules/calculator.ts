@@ -1,6 +1,7 @@
 import { BUTTON_SIGNS } from '../data/buttonsSigns';
 import { createElement } from '../utils/create-element';
 import { Button } from './button';
+import { Output } from './output';
 
 export class Calculator {
   constructor() {
@@ -20,6 +21,10 @@ export class Calculator {
       parent: main,
     });
 
+    // Output
+    new Output('0', calculator);
+
+    // Buttons
     const buttonsWrapper = createElement({
       tag: 'div',
       styles: ['buttons'],
