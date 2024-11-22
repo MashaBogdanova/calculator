@@ -1,0 +1,9 @@
+@use '../abstract/list' as styles;
+
+.calculator {
+  width: 26rem;
+  height: 52rem;
+
+  background-color: styles.$color-light-transparent;
+  border-radius: 3.9rem;
+}
