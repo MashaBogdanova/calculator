@@ -28,4 +28,9 @@ export class Output {
     }
     this.outputElement.innerText = this.term;
   }
+
+  clear() {
+    this.term = '0';
+    this.outputElement.innerText = this.term;
+  }
 }

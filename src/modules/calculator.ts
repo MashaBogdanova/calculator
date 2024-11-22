@@ -44,6 +44,8 @@ export class Calculator {
       const clickedButton = e.target as HTMLButtonElement;
       if (!isNaN(Number(clickedButton.innerText))) {
         output.update(clickedButton.innerText);
+      } else if (clickedButton.innerText === 'AC') {
+        output.clear();
       }
     });
 
