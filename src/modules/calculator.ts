@@ -15,6 +15,10 @@ export class Calculator {
       parent: document.body,
     });
 
+    // Circle
+    createElement({ tag: 'div', styles: ['circle'], parent: main });
+
+    // Calculator
     const calculator = createElement({
       tag: 'section',
       styles: ['calculator'],
