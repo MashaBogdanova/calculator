@@ -11,6 +11,8 @@
   width: 100vw;
   height: 100vh;
 
+  overflow: hidden;
+
   background: linear-gradient(
     to bottom,
     styles.$color-primary-xs 0%,
@@ -34,6 +36,7 @@
         styles.$color-light-l,
         styles.$color-light-m
       );
+      transform: translate(-25rem, 3rem);
     }
 
     .output {
@@ -46,7 +49,8 @@
 
     .calculator:before {
       background-color: styles.$color-shadow-dark;
-      box-shadow: 20px 40px 100px styles.$color-shadow-dark;
+      box-shadow: -50px 0 100px styles.$color-shadow-dark;
+      transform: translate(-8rem, 2rem);
     }
   }
 }

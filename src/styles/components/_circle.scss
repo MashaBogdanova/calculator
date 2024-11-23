@@ -2,9 +2,6 @@
 
 .circle {
   position: absolute;
-  top: 19vh;
-  left: 42vw;
-  z-index: -1;
 
   width: 50rem;
   height: 50rem;
@@ -15,4 +12,8 @@
     styles.$color-primary,
     styles.$color-primary-m
   );
+
+  z-index: -1;
+  transform: translate(2rem, -3rem);
+  transition: all 2s ease-out;
 }
