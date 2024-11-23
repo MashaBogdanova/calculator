@@ -1,4 +1,4 @@
-import { BUTTON_SIGNS_ACCENT } from '../data/buttonsSigns';
+import { BUTTON_SIGNS_ACCENT } from '../data/buttons-signs';
 import { createElement } from '../utils/create-element';
 
 export class Button {

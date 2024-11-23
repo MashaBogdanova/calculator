@@ -1,3 +1,4 @@
+import { Operator, operators } from '../utils/calculate-with-operator';
 import { createElement } from '../utils/create-element';
 
 export class Output {
@@ -53,6 +54,19 @@ export class Output {
     this.firstOperand = Number(this.currentNumber);
     this.currentNumber = '0';
     this.operator = symbol;
+  }
+
+  calculate() {
+    if (this.operator) {
+      const result = operators[this.operator as Operator](
+        this.firstOperand,
+        Number(this.currentNumber)
+      );
+
+      this.outputElement.innerText = String(result);
+      this.firstOperand = result;
+      this.currentNumber = '0';
+    }
   }
 
   clear() {

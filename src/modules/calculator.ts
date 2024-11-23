@@ -1,4 +1,4 @@
-import { BUTTON_SIGNS } from '../data/buttonsSigns';
+import { BUTTON_SIGNS } from '../data/buttons-signs';
 import { createElement } from '../utils/create-element';
 import { Button } from './button';
 import { Output } from './output';
@@ -54,6 +54,8 @@ export class Calculator {
       } else if (clickedSymbol === 'AC') {
         // Clear if user click AC
         output.clear();
+      } else if (clickedSymbol === '=') {
+        output.calculate();
       } else {
         // Provide calculations if user click operator
         output.chooseOperator(clickedSymbol);
