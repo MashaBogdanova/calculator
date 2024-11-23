@@ -71,6 +71,12 @@ export class Output {
 
   calculate() {
     if (this.operator) {
+      if (this.operator === '÷' && this.currentNumber === '0') {
+        // Show error if user divide by 0
+        this.outputElement.innerText = 'Error';
+        return;
+      }
+
       const result = operators[this.operator as Operator](
         this.firstOperand,
         Number(this.currentNumber)
