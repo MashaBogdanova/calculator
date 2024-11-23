@@ -31,7 +31,7 @@ export class ThemeToggle {
     });
 
     toggle.addEventListener('click', () => {
-      toggle.classList.toggle('toggle_dark');
+      document.body.classList.toggle('body_dark');
     });
   }
 }

@@ -1,6 +1,6 @@
 @use '../abstract/list' as styles;
 
-body {
+.body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,4 +16,37 @@ body {
     styles.$color-primary-xs 0%,
     styles.$color-primary-s 100%
   );
+
+  &_dark {
+    background: linear-gradient(
+      to bottom,
+      styles.$color-secondary-l 0%,
+      styles.$color-secondary 100%
+    );
+
+    .toggle {
+      background-color: styles.$color-primary;
+    }
+
+    .circle {
+      background: linear-gradient(
+        to left top,
+        styles.$color-light-l,
+        styles.$color-light-m
+      );
+    }
+
+    .output {
+      color: styles.$color-light-m;
+    }
+
+    .calculator {
+      background-color: styles.$color-secondary-transparent;
+    }
+
+    .calculator:before {
+      background-color: styles.$color-shadow-dark;
+      box-shadow: 20px 40px 100px styles.$color-shadow-dark;
+    }
+  }
 }

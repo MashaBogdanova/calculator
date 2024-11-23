@@ -9,10 +9,10 @@
   width: 50rem;
   height: 50rem;
 
+  border-radius: 50%;
   background: linear-gradient(
     to left top,
     styles.$color-primary,
     styles.$color-primary-m
   );
-  border-radius: 50%;
 }

@@ -12,10 +12,6 @@
 
   transition: background-color 500ms ease-out;
 
-  &_dark {
-    background-color: styles.$color-primary;
-  }
-
   &__icon {
     display: flex;
     width: 3rem;
