@@ -1,15 +1,19 @@
 import { createElement } from '../utils/create-element';
 
 export class Output {
-  private parent: HTMLElement;
-  private term: string;
-  private isPositive: boolean;
+  private currentNumber: string;
+  private isNumberPositive: boolean;
+  private firstOperand: number;
+  private operator: string | null;
+  private parentElement: HTMLElement;
   private outputElement: HTMLElement;
 
-  constructor(parent: HTMLElement) {
-    this.parent = parent;
-    this.term = '0';
-    this.isPositive = true;
+  constructor(parentElement: HTMLElement) {
+    this.currentNumber = '0';
+    this.isNumberPositive = true;
+    this.firstOperand = 0;
+    this.operator = null;
+    this.parentElement = parentElement;
     this.outputElement = this.render();
   }
 
@@ -17,32 +21,42 @@ export class Output {
     return createElement({
       tag: 'div',
       styles: ['output'],
-      parent: this.parent,
-      innerText: this.term,
+      parent: this.parentElement,
+      innerText: this.currentNumber,
     });
   }
 
   updateValue(usersInput: string) {
-    if (usersInput === '.' && this.term.includes('.')) {
+    if (usersInput === '.' && this.currentNumber.includes('.')) {
       // Allow adding only one . in a number
       return;
     }
 
-    if (this.term === '0' && usersInput !== '.' && usersInput !== '+/-') {
+    if (
+      this.currentNumber === '0' &&
+      usersInput !== '.' &&
+      usersInput !== '+/-'
+    ) {
       // Replace initial value on first digit click
-      this.term = usersInput;
+      this.currentNumber = usersInput;
     } else if (usersInput === '+/-') {
       // Switch number to negative / positive
-      this.term = String(Number(this.term) * -1);
+      this.currentNumber = String(Number(this.currentNumber) * -1);
     } else {
       // Add digit to number
-      this.term = this.term + usersInput;
+      this.currentNumber = this.currentNumber + usersInput;
     }
-    this.outputElement.innerText = this.term;
+    this.outputElement.innerText = this.currentNumber;
+  }
+
+  chooseOperator(symbol: string) {
+    this.firstOperand = Number(this.currentNumber);
+    this.currentNumber = '0';
+    this.operator = symbol;
   }
 
   clear() {
-    this.term = '0';
-    this.outputElement.innerText = this.term;
+    this.currentNumber = '0';
+    this.outputElement.innerText = this.currentNumber;
   }
 }

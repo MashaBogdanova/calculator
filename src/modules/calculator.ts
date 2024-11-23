@@ -51,11 +51,12 @@ export class Calculator {
       ) {
         // Update value if user click digit or . or +/-
         output.updateValue(clickedSymbol);
-      }
-
-      if (clickedSymbol === 'AC') {
+      } else if (clickedSymbol === 'AC') {
         // Clear if user click AC
         output.clear();
+      } else {
+        // Provide calculations if user click operator
+        output.chooseOperator(clickedSymbol);
       }
     });
 
