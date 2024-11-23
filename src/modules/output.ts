@@ -6,6 +6,7 @@ export class Output {
   private isNumberPositive: boolean;
   private firstOperand: number;
   private operator: string | null;
+  private isFirstOperation: boolean;
   private parentElement: HTMLElement;
   private outputElement: HTMLElement;
 
@@ -14,6 +15,7 @@ export class Output {
     this.isNumberPositive = true;
     this.firstOperand = 0;
     this.operator = null;
+    this.isFirstOperation = true;
     this.parentElement = parentElement;
     this.outputElement = this.render();
   }
@@ -51,9 +53,13 @@ export class Output {
   }
 
   chooseOperator(symbol: string) {
-    this.firstOperand = Number(this.currentNumber);
-    this.currentNumber = '0';
+    if (this.isFirstOperation) {
+      // Use the entered number as the first operand for the first operation
+      // Otherwise, use the previous result
+      this.firstOperand = Number(this.currentNumber);
+    }
     this.operator = symbol;
+    this.currentNumber = '0';
   }
 
   calculate() {
@@ -64,13 +70,15 @@ export class Output {
       );
 
       this.outputElement.innerText = String(result);
+      this.isFirstOperation = false;
+      // Use result as the first operand if user continues counting
       this.firstOperand = result;
-      this.currentNumber = '0';
     }
   }
 
   clear() {
     this.currentNumber = '0';
     this.outputElement.innerText = this.currentNumber;
+    this.isFirstOperation = true;
   }
 }
