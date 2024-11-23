@@ -1,6 +1,8 @@
 @use 'base/reset';
 @use 'base/fonts';
+@use 'layout/header';
 @use 'layout/body';
+@use 'components/toggle';
 @use 'components/circle';
 @use 'components/calculator';
 @use 'components/button';

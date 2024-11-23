@@ -3,6 +3,10 @@ interface NewElemParam {
   styles: string[];
   parent: string | HTMLElement;
   innerText?: string;
+  attribute?: {
+    key: string;
+    value: string;
+  };
 }
 
 export function createElement(param: NewElemParam) {
@@ -11,6 +15,10 @@ export function createElement(param: NewElemParam) {
 
   if (param.innerText) {
     element.innerText = param.innerText;
+  }
+
+  if (param.attribute) {
+    element.setAttribute(param.attribute.key, param.attribute.value);
   }
 
   let parentElem;

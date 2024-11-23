@@ -10,8 +10,7 @@
 
   background-color: styles.$color-light-transparent;
   border-radius: 50%;
-  border: 0.5px solid styles.$color-light-transparent;
-  box-shadow: 0 4px 4px styles.$color-dark-transparent;
+  @extend %button-border;
 
   transition: transform 150ms ease-out;
 
