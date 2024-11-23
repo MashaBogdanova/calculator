@@ -23,10 +23,10 @@
 
     width: 250px;
     height: 450px;
-    background-color: rgba(84, 0, 0, 0.29);
+    background-color: styles.$color-shadow-light;
     border-radius: 70px;
     filter: blur(20px);
-    box-shadow: 20px 40px 100px rgba(84, 0, 0, 0.29);
+    box-shadow: 20px 40px 100px styles.$color-shadow-light;
   }
 }
 
