@@ -82,7 +82,7 @@ export class Output {
         Number(this.currentNumber)
       );
 
-      this.outputElement.innerText = String(result);
+      this.outputElement.innerText = String(result).slice(0, 24);
       this.isFirstOperation = false;
       this.isAfterCalculate = true;
       // Use result as the first operand if user continues counting
