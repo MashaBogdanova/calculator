@@ -82,12 +82,20 @@ export class Output {
         Number(this.currentNumber)
       );
 
-      this.outputElement.innerText = String(result).slice(0, 24);
+      this.currentNumber = String(result).slice(0, 24);
+      this.outputElement.innerText = this.currentNumber;
       this.isFirstOperation = false;
       this.isAfterCalculate = true;
       // Use result as the first operand if user continues counting
       this.firstOperand = result;
     }
+  }
+
+  calculatePercent() {
+    const result = Number(this.currentNumber) / 100;
+    this.currentNumber = String(result);
+    this.outputElement.innerText = this.currentNumber.slice(0, 16);
+    this.firstOperand = result;
   }
 
   clear() {

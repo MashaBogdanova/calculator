@@ -56,6 +56,8 @@ export class Calculator {
         output.clear();
       } else if (clickedSymbol === '=') {
         output.calculate();
+      } else if (clickedSymbol === '%') {
+        output.calculatePercent();
       } else {
         // Provide calculations if user click operator
         output.chooseOperator(clickedSymbol);
