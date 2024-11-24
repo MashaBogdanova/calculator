@@ -72,7 +72,7 @@ export class Output {
       this.firstOperand = Number(this.currentValue);
     }
 
-    if (this.operator) {
+    if (this.operator && !this.isAfterCalculate) {
       // Show result If user click operator to continue chain
       // For example 2 + 3 + 5...
       this.calculate();
@@ -90,7 +90,6 @@ export class Output {
         this.outputElement.innerText = 'Error';
         return;
       }
-
       if (!this.isAfterCalculate) {
         // If user clicks "=" multiple times in a row, retain the secondOperator
         // Otherwise, use the currentValue as the secondOperand
@@ -108,7 +107,6 @@ export class Output {
       this.isAfterCalculate = true;
       // Use result as the first operand if user continues counting
       this.firstOperand = result;
-      this.operator = null;
     }
   }
 
