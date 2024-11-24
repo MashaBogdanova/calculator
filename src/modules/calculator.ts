@@ -41,6 +41,11 @@ export class Calculator {
     });
 
     buttonsWrapper.addEventListener('click', (e) => {
+      const elem = e.target as HTMLElement;
+      if (elem.matches('.buttons')) {
+        return;
+      }
+
       const clickedButton = e.target as HTMLButtonElement;
       const clickedSymbol = clickedButton.innerText;
 
