@@ -2,7 +2,7 @@ import { Operator, operators } from '../utils/calculate-with-operator';
 import { createElement } from '../utils/create-element';
 
 export class Output {
-  private currentNumber: string;
+  private currentValue: string;
   private isNumberPositive: boolean;
   private firstOperand: number;
   private secondOperand: number;
@@ -13,7 +13,7 @@ export class Output {
   private outputElement: HTMLElement;
 
   constructor(parentElement: HTMLElement) {
-    this.currentNumber = '0';
+    this.currentValue = '0';
     this.isNumberPositive = true;
     this.firstOperand = 0;
     this.secondOperand = 0;
@@ -29,52 +29,63 @@ export class Output {
       tag: 'div',
       styles: ['output'],
       parent: this.parentElement,
-      innerText: this.currentNumber,
+      innerText: this.currentValue,
     });
   }
 
-  updateValue(usersInput: string) {
+  updateCurrentValue(usersInput: string) {
     if (this.isAfterCalculate) {
       // Clear values if user enters a digit after previous result
       this.clear();
     }
 
-    if (usersInput === '.' && this.currentNumber.includes('.')) {
+    if (usersInput === '.' && this.currentValue.includes('.')) {
       // Allow adding only one . in a number
       return;
     }
 
     if (
-      this.currentNumber === '0' &&
+      this.currentValue === '0' &&
       usersInput !== '.' &&
       usersInput !== '+/-'
     ) {
       // Replace initial value on first digit click
-      this.currentNumber = usersInput;
+      this.currentValue = usersInput;
     } else if (usersInput === '+/-') {
       // Switch number to negative / positive
-      this.currentNumber = String(Number(this.currentNumber) * -1);
+      this.currentValue = String(Number(this.currentValue) * -1);
     } else {
       // Add digit to number
-      this.currentNumber = this.currentNumber + usersInput;
+      this.currentValue = this.currentValue + usersInput;
     }
-    this.outputElement.innerText = this.currentNumber;
+    this.outputElement.innerText = this.currentValue;
   }
 
   chooseOperator(symbol: string) {
+    if (this.operator) {
+      this.isFirstOperation = false;
+    }
+
     if (this.isFirstOperation) {
       // Use the entered number as the first operand for the first operation
       // Otherwise, use the previous result
-      this.firstOperand = Number(this.currentNumber);
+      this.firstOperand = Number(this.currentValue);
     }
+
+    if (this.operator) {
+      // Show result If user click operator to continue chain
+      // For example 2 + 3 + 5...
+      this.calculate();
+    }
+
+    this.currentValue = '0';
     this.operator = symbol;
-    this.currentNumber = '0';
     this.isAfterCalculate = false;
   }
 
   calculate() {
     if (this.operator) {
-      if (this.operator === '÷' && this.currentNumber === '0') {
+      if (this.operator === '÷' && this.currentValue === '0') {
         // Show error if user divide by 0
         this.outputElement.innerText = 'Error';
         return;
@@ -82,35 +93,37 @@ export class Output {
 
       if (!this.isAfterCalculate) {
         // If user clicks "=" multiple times in a row, retain the secondOperator
-        // Otherwise, use the currentNumber as the secondOperand
-        this.secondOperand = Number(this.currentNumber);
+        // Otherwise, use the currentValue as the secondOperand
+        this.secondOperand = Number(this.currentValue);
       }
 
       const result = operators[this.operator as Operator](
         this.firstOperand,
         this.secondOperand
       );
-      this.currentNumber = String(result).slice(0, 24);
-      this.outputElement.innerText = this.currentNumber;
+      this.currentValue = String(result);
+      this.outputElement.innerText = this.currentValue.slice(0, 24);
 
       this.isFirstOperation = false;
       this.isAfterCalculate = true;
       // Use result as the first operand if user continues counting
       this.firstOperand = result;
+      this.operator = null;
     }
   }
 
   calculatePercent() {
-    const result = Number(this.currentNumber) / 100;
-    this.currentNumber = String(result);
-    this.outputElement.innerText = this.currentNumber.slice(0, 16);
+    const result = Number(this.currentValue) / 100;
+    this.currentValue = String(result);
+    this.outputElement.innerText = this.currentValue.slice(0, 16);
     this.firstOperand = result;
   }
 
   clear() {
-    this.currentNumber = '0';
-    this.outputElement.innerText = this.currentNumber;
+    this.currentValue = '0';
+    this.outputElement.innerText = this.currentValue;
     this.isFirstOperation = true;
     this.isAfterCalculate = false;
+    this.operator = null;
   }
 }

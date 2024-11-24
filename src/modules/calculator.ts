@@ -55,7 +55,7 @@ export class Calculator {
         clickedSymbol === '+/-'
       ) {
         // Update value if user click digit or . or +/-
-        output.updateValue(clickedSymbol);
+        output.updateCurrentValue(clickedSymbol);
       } else if (clickedSymbol === 'AC') {
         // Clear if user click AC
         output.clear();
