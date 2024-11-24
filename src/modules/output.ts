@@ -5,6 +5,7 @@ export class Output {
   private currentNumber: string;
   private isNumberPositive: boolean;
   private firstOperand: number;
+  private secondOperand: number;
   private operator: string | null;
   private isFirstOperation: boolean;
   private isAfterCalculate: boolean;
@@ -15,6 +16,7 @@ export class Output {
     this.currentNumber = '0';
     this.isNumberPositive = true;
     this.firstOperand = 0;
+    this.secondOperand = 0;
     this.operator = null;
     this.isFirstOperation = true;
     this.isAfterCalculate = false;
@@ -67,6 +69,7 @@ export class Output {
     }
     this.operator = symbol;
     this.currentNumber = '0';
+    this.isAfterCalculate = false;
   }
 
   calculate() {
@@ -77,13 +80,19 @@ export class Output {
         return;
       }
 
+      if (!this.isAfterCalculate) {
+        // If user clicks "=" multiple times in a row, retain the secondOperator
+        // Otherwise, use the currentNumber as the secondOperand
+        this.secondOperand = Number(this.currentNumber);
+      }
+
       const result = operators[this.operator as Operator](
         this.firstOperand,
-        Number(this.currentNumber)
+        this.secondOperand
       );
-
       this.currentNumber = String(result).slice(0, 24);
       this.outputElement.innerText = this.currentNumber;
+
       this.isFirstOperation = false;
       this.isAfterCalculate = true;
       // Use result as the first operand if user continues counting
