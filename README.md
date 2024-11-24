@@ -33,6 +33,7 @@ The code is organized in the `src` folder, with the following structure:
   - **`modules/`**: Stores TypeScript files for application modules, encapsulating specific functionality.
   - **`styles/`**: Contains SCSS files for styling the application.
   - **`utils/`**: Includes TypeScript utility files used throughout the app.
+  - **`assets/`**: Includes png icons.
 
 ---
 
