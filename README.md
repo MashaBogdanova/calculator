@@ -4,7 +4,7 @@
 **GitHub Profile:** [Link to rprofile](https://github.com/MashaBogdanova)  
 **Project GitHub Repository:** [Link to repository](https://github.com/MashaBogdanova/calculator)  
 **Task documentation:** [Link to task](https://docs.google.com/document/d/1zpXXeSae-BlcxPKgw3DhxZA92cspVailrPYoaXSYrW8/edit?tab=t.0)  
-**Deploy:** [Link to deploy](#)
+**Deploy:** [Link to deploy](https://elegant-mousse-642a13.netlify.app)
 
 ## Features
 - Basic arithmetic operations: addition, subtraction, multiplication, division.
