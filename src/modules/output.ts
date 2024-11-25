@@ -3,7 +3,6 @@ import { createElement } from '../utils/create-element';
 
 export class Output {
   private currentValue: string;
-  private isNumberPositive: boolean;
   private firstOperand: number;
   private secondOperand: number;
   private operator: string | null;
@@ -14,7 +13,6 @@ export class Output {
 
   constructor(parentElement: HTMLElement) {
     this.currentValue = '0';
-    this.isNumberPositive = true;
     this.firstOperand = 0;
     this.secondOperand = 0;
     this.operator = null;
@@ -51,6 +49,7 @@ export class Output {
       // Add digit to number
       this.currentValue = this.currentValue + usersInput;
     }
+
     this.outputElement.innerText = this.currentValue;
   }
 
@@ -72,6 +71,7 @@ export class Output {
     }
 
     this.operator = symbol;
+
     if (symbol === '%' || symbol === '+/-') {
       this.calculate();
       return;
@@ -101,10 +101,12 @@ export class Output {
     if (this.operator === '+/-') {
       this.secondOperand = -1;
     }
+
     const result = operators[this.operator as Operator](
       this.firstOperand,
       this.secondOperand
     );
+
     this.currentValue = String(result);
     this.outputElement.innerText = this.currentValue.slice(0, 24);
     this.isFirstOperation = false;
