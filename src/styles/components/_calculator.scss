@@ -21,11 +21,11 @@
 
     position: absolute;
 
-    width: 250px;
-    height: 450px;
+    width: 25rem;
+    height: 45rem;
     background-color: styles.$color-shadow-light;
     border-radius: 70px;
-    filter: blur(20px);
+    filter: blur(2rem);
     box-shadow: 20px 40px 100px styles.$color-shadow-light;
 
     z-index: -1;
