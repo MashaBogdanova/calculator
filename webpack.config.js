@@ -26,6 +26,10 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(svg|png|jpg|gif)$/,
+        type: 'asset/inline',
+      },
     ],
   },
   resolve: {
