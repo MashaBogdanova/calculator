@@ -1,5 +1,6 @@
 import { BUTTON_SIGNS } from '../data/buttons-signs';
 import { createElement } from '../utils/create-element';
+import { isDigit } from '../utils/number-utils';
 import { Button } from './button';
 import { Output } from './output';
 
@@ -49,7 +50,7 @@ export class Calculator {
       const clickedButton = e.target as HTMLButtonElement;
       const clickedSymbol = clickedButton.innerText;
 
-      if (!isNaN(Number(clickedSymbol)) || clickedSymbol === '.') {
+      if (isDigit(clickedSymbol) || clickedSymbol === '.') {
         // Update value if user click digit or . or +/-
         output.updateCurrentValue(clickedSymbol);
       } else if (clickedSymbol === 'AC') {
