@@ -49,11 +49,7 @@ export class Calculator {
       const clickedButton = e.target as HTMLButtonElement;
       const clickedSymbol = clickedButton.innerText;
 
-      if (
-        !isNaN(Number(clickedSymbol)) ||
-        clickedSymbol === '.' ||
-        clickedSymbol === '+/-'
-      ) {
+      if (!isNaN(Number(clickedSymbol)) || clickedSymbol === '.') {
         // Update value if user click digit or . or +/-
         output.updateCurrentValue(clickedSymbol);
       } else if (clickedSymbol === 'AC') {

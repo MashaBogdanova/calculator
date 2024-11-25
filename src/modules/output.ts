@@ -44,16 +44,9 @@ export class Output {
       return;
     }
 
-    if (
-      this.currentValue === '0' &&
-      usersInput !== '.' &&
-      usersInput !== '+/-'
-    ) {
+    if (this.currentValue === '0' && usersInput !== '.') {
       // Replace initial value on first digit click
       this.currentValue = usersInput;
-    } else if (usersInput === '+/-') {
-      // Switch number to negative / positive
-      this.currentValue = String(Number(this.currentValue) * -1);
     } else {
       // Add digit to number
       this.currentValue = this.currentValue + usersInput;
@@ -78,43 +71,45 @@ export class Output {
       this.calculate();
     }
 
-    if (symbol === '%') {
-      this.operator = symbol;
+    this.operator = symbol;
+    if (symbol === '%' || symbol === '+/-') {
       this.calculate();
       return;
     }
 
     this.currentValue = '0';
-    this.operator = symbol;
     this.isAfterCalculate = false;
   }
 
   calculate() {
-    if (this.operator) {
-      if (this.operator === '÷' && this.currentValue === '0') {
-        // Show error if user divide by 0
-        this.outputElement.innerText = 'Error';
-        return;
-      }
-
-      if (!this.isAfterCalculate) {
-        // If user clicks "=" multiple times in a row, retain the secondOperator
-        // Otherwise, use the currentValue as the secondOperand
-        this.secondOperand = Number(this.currentValue);
-      }
-
-      const result = operators[this.operator as Operator](
-        this.firstOperand,
-        this.operator === '%' ? 100 : this.secondOperand
-      );
-      this.currentValue = String(result);
-      this.outputElement.innerText = this.currentValue.slice(0, 24);
-
-      this.isFirstOperation = false;
-      this.isAfterCalculate = true;
-      // Use result as the first operand if user continues counting
-      this.firstOperand = result;
+    if (!this.operator) {
+      return;
     }
+    if (this.operator === '÷' && this.currentValue === '0') {
+      // Show error if user divide by 0
+      this.outputElement.innerText = 'Error';
+      return;
+    }
+    if (!this.isAfterCalculate) {
+      // If user clicks "=" multiple times in a row, retain the secondOperator
+      // Otherwise, use the currentValue as the secondOperand
+      this.secondOperand = Number(this.currentValue);
+    }
+    if (this.operator === '%') {
+      this.secondOperand = 100;
+    }
+    if (this.operator === '+/-') {
+      this.secondOperand = -1;
+    }
+    const result = operators[this.operator as Operator](
+      this.firstOperand,
+      this.secondOperand
+    );
+    this.currentValue = String(result);
+    this.outputElement.innerText = this.currentValue.slice(0, 24);
+    this.isFirstOperation = false;
+    this.isAfterCalculate = true;
+    this.firstOperand = result;
   }
 
   clear() {

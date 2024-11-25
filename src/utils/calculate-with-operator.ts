@@ -1,4 +1,4 @@
-export type Operator = '+' | '-' | '×' | '÷' | '%';
+export type Operator = '+' | '-' | '×' | '÷' | '%' | '+/-';
 
 export const operators: Record<Operator, (a: number, b: number) => number> = {
   '+': (a, b) => a + b,
@@ -6,4 +6,5 @@ export const operators: Record<Operator, (a: number, b: number) => number> = {
   '×': (a, b) => a * b,
   '÷': (a, b) => a / b,
   '%': (a, b) => a / b,
+  '+/-': (a, b) => a * b,
 };
