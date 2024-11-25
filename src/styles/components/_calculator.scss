@@ -1,0 +1,44 @@
+@use '../abstract/list' as styles;
+
+.calculator {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 26rem;
+  height: 52rem;
+  padding: 3rem 2.5rem;
+
+  background-color: styles.$color-light-transparent;
+  border-radius: 3.9rem;
+
+  transition: background-color 500ms ease-out;
+
+  &:before {
+    content: '';
+
+    position: absolute;
+
+    width: 25rem;
+    height: 45rem;
+    background-color: styles.$color-shadow-light;
+    border-radius: 70px;
+    filter: blur(2rem);
+    box-shadow: 20px 40px 100px styles.$color-shadow-light;
+
+    z-index: -1;
+    transform: translate(3rem, -2rem);
+    transition: all 500ms ease-out;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+
+  width: 100%;
+}

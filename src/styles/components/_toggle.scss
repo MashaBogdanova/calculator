@@ -1,0 +1,30 @@
+@use '../abstract/list' as styles;
+
+.toggle {
+  display: flex;
+  gap: 2.5rem;
+  padding: 1rem 1.5rem;
+
+  background-color: styles.$color-light-transparent;
+  border-radius: 50px;
+  @extend %button-border;
+  cursor: pointer;
+
+  transition: background-color 500ms ease-out;
+
+  &__icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+
+    background-size: cover;
+
+    &_light {
+      background-image: url('/src/assets/sun.png');
+    }
+
+    &_dark {
+      background-image: url('/src/assets/moon.png');
+    }
+  }
+}

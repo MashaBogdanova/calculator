@@ -1,0 +1,13 @@
+@use '../abstract/list' as styles;
+
+.output {
+  width: 100%;
+
+  text-align: right;
+  font-size: 4.8rem;
+  line-height: 1.2;
+  color: styles.$color-dark;
+  word-break: break-all;
+
+  transition: color 500ms ease-out;
+}

@@ -1,0 +1,6 @@
+@use './constants' as styles;
+
+%button-border {
+  border: 0.5px solid styles.$color-light-transparent;
+  box-shadow: 0 4px 4px styles.$color-dark-transparent;
+}

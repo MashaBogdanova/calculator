@@ -1,0 +1,19 @@
+@use '../abstract/list' as styles;
+
+.circle {
+  position: absolute;
+
+  width: 50rem;
+  height: 50rem;
+
+  border-radius: 50%;
+  background: linear-gradient(
+    to left top,
+    styles.$color-primary,
+    styles.$color-primary-m
+  );
+
+  z-index: -1;
+  transform: translate(2rem, -3rem);
+  transition: all 2s ease-out;
+}
