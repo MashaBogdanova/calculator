@@ -60,11 +60,10 @@ export class Calculator {
         // Clear if user click AC
         output.clear();
       } else if (clickedSymbol === '=') {
-        output.calculate();
-      } else if (clickedSymbol === '%') {
-        output.calculatePercent();
-      } else {
         // Provide calculations if user click operator
+        output.calculate();
+      } else {
+        // Save chosen operator
         output.chooseOperator(clickedSymbol);
       }
     });

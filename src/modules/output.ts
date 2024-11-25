@@ -78,6 +78,12 @@ export class Output {
       this.calculate();
     }
 
+    if (symbol === '%') {
+      this.operator = symbol;
+      this.calculate();
+      return;
+    }
+
     this.currentValue = '0';
     this.operator = symbol;
     this.isAfterCalculate = false;
@@ -90,6 +96,7 @@ export class Output {
         this.outputElement.innerText = 'Error';
         return;
       }
+
       if (!this.isAfterCalculate) {
         // If user clicks "=" multiple times in a row, retain the secondOperator
         // Otherwise, use the currentValue as the secondOperand
@@ -98,7 +105,7 @@ export class Output {
 
       const result = operators[this.operator as Operator](
         this.firstOperand,
-        this.secondOperand
+        this.operator === '%' ? 100 : this.secondOperand
       );
       this.currentValue = String(result);
       this.outputElement.innerText = this.currentValue.slice(0, 24);
@@ -108,13 +115,6 @@ export class Output {
       // Use result as the first operand if user continues counting
       this.firstOperand = result;
     }
-  }
-
-  calculatePercent() {
-    const result = Number(this.currentValue) / 100;
-    this.currentValue = String(result);
-    this.outputElement.innerText = this.currentValue.slice(0, 16);
-    this.firstOperand = result;
   }
 
   clear() {
