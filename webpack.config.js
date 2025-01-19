@@ -4,8 +4,8 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
-  entry: './src/index.ts',
+  mode: 'development',
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
